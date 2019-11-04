@@ -1,0 +1,49 @@
+<template>
+  <div id="home">
+    <NavBar class="home-nav">
+      <div slot="center">
+        购物街
+      </div>
+    </NavBar>
+    <HomeSwiper :banners="banners"></HomeSwiper>
+    <RecommendView :recommends="recommends"></RecommendView>
+  </div>
+
+</template>
+
+<script>
+  import {getHomeMutiData} from "network/home";
+
+  import NavBar from '../../components/common/navbar/NavBar'
+  import  HomeSwiper from './childComps/HomeSwiper'
+  import RecommendView from './childComps/RecommendView'
+
+  export default {
+    name: "Home",
+    components: {
+      NavBar,
+      HomeSwiper,
+      RecommendView
+    },
+    data() {
+      return {
+        banners: [],
+        recommends: [],
+      }
+    },
+    created() {
+      getHomeMutiData().then(res => {
+        this.banners = res.data.data.banner.list
+        this.recommends = res.data.data.recommend.list
+      })
+    }
+  }
+</script>
+
+
+<style scoped>
+  .home-nav {
+    background-color: var(--color-tint);
+    color: white;
+  }
+</style>
