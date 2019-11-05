@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default function(config){
   const instance = axios.create({
-    baseURL: 'http://123.207.32.32:8000',
+    baseURL: 'http://123.207.32.32:8000/api/vip',
     timeout: 5000
   })
 
